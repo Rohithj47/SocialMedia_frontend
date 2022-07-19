@@ -60,9 +60,9 @@ function Sidebar(props) {
                 <button className="sidebarButton">Show More</button>
                 <hr className='sidebarHr'/>
                 <ul className="sidebarFriendList">
-                    {Users.map((u) => (
+                    {/* {Users.map((u) => (
                         <CloseFriend user = {u} key = {u.id} />
-                    ))}
+                    ))} */}
                 </ul>
             </div>
         </div>

@@ -10,9 +10,8 @@ function Feed({username}) {
         const fetchPosts = async() =>{
             console.log('post/profile/' + username)
             const res = username 
-            ? await axios.get('http://localhost:3000/api/post/profile/' + username)
+            ? await axios.get('/post/profile/' + username)
             :await axios.get('post/timeline/62d5562b2a1623e850083958')
-            console.log(res)
             setPosts(res.data)
         }
         fetchPosts()
