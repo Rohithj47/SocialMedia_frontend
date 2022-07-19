@@ -15,6 +15,7 @@ import { Users } from '../../dummyData';
 import CloseFriend from '../closeFriend/CloseFriend';
 
 function Sidebar(props) {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER
     return (
         <div className='sidebar'>
             <div className="sidebarWrapper">
