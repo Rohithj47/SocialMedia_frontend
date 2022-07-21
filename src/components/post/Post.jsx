@@ -41,7 +41,14 @@ function Post({post}) {
                 <div className="postTop">
                     <div className="postTopLeft">
                         <Link to={`/profile/${user.username}`}>
-                            <img src={user.profilePicture || PF+'/person/noAvatar.png'} className="postProfileImg" />
+                            <img 
+                                src={
+                                    user.profilePicture
+                                      ? PF + user.profilePicture
+                                      : PF + "person/noAvatar.png"
+                                  } 
+                                className="postProfileImg" 
+                            />
                         </Link>
                         <span className="postUsername">{user.username}</span>
                         <span className="postDate">{format(post.createdAt)}</span>
@@ -58,8 +65,8 @@ function Post({post}) {
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
-                        <img className="likeIcon" src="assets/like.png" onClick={likeHandler} alt="" />
-                        <img className="likeIcon" src="assets/heart.png" alt="" />
+                        <img className="likeIcon" src={PF + "/like.png"} onClick={likeHandler} alt="" />
+                        <img className="likeIcon" src={PF + "/heart.png"} alt="" />
                         <span className="postLikeCounter">{like} likes</span>
                     </div>
                     <div className="postBottomRight">

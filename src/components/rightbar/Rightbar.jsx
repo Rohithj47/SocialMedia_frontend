@@ -42,9 +42,9 @@ export default function Rightbar({ user }) {
             <span className="rightbarInfoValue">
             {user.relationship === 1
                 ? "Single"
-                : user.relationship === 1
+                : user.relationship === 3
                 ? "Married"
-                : "-"}
+                : "Dating"}
             </span>
           </div>
         </div>
@@ -65,7 +65,6 @@ export default function Rightbar({ user }) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {console.log("Rightbar profile ="+user)}
         {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>

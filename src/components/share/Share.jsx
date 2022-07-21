@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useRef } from "react";
 import { useState } from "react";
+import axios from "axios"
 
 export default function Share() {
   const { user } = useContext(AuthContext)
@@ -11,19 +12,32 @@ export default function Share() {
   const desc = useRef()
   const [file, setFile] = useState(null)
 
-  const submitHandler = () =>{
-    console.log(file.current.value)
+  const submitHandler = async (e) =>{
+    e.preventDefault()
+    const newPost = {
+      userId : user._id,
+      desc: desc.current.value
+    }
+    if(file){
+      const data = new FormData()
+      const filename = Date.now() + file.name
+      data.append("name", filename)
+      data.append("file", file)
+      newPost.img = filename
+      await axios.post('/upload', data)
+                .catch((err) => { console.log(err)}) 
+    }
+    await axios.post('/post', newPost)
+              .then(res => window.location.reload())
+              .catch((err) => { console.log(err) }) 
+    
   }
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img className="shareProfileImg" src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
-            } alt="" />
-          <input
+          <img className="shareProfileImg" src={user.profilePicture ? PF + user.profilePicture : PF + "person/noAvatar.png"} alt="" />
+          <textarea
             placeholder="What's on your mind?"
             className="shareInput"
             ref= {desc}

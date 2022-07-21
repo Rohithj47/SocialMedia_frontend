@@ -14,7 +14,6 @@ function Login(props) {
         e.preventDefault()
         loginCall({ email: email.current.value, password: password.current.value }, dispatch)
     }
-    console.log(user)
     return (
         <div className="login">
             <div className="loginWrapper">
@@ -28,7 +27,7 @@ function Login(props) {
                     <form className="loginBox" onSubmit={handleClick}>
                         <input placeholder="Email" type="email" className="loginInput" ref = {email} />
                         <input placeholder="Password" type="password" className="loginInput" ref = {password} />
-                        <button className="loginButton" disabled = {isFetching}>{isFetching? <CircularProgress color="white" size="20px" />: "Log In"}</button>
+                        <button className="loginButton" disabled = {isFetching}>{isFetching? <CircularProgress size="20px" />: "Log In"}</button>
                         <span className="loginForgot">Forgot Password?</span>
                         <button className="loginRegisterButton">
                             Create a New Account
