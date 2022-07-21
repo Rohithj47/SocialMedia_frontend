@@ -2,6 +2,8 @@ import { useContext, useRef } from "react";
 import "./login.css";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
+import { CircularProgress } from '@material-ui/core';
+
 
 function Login(props) {
     const email = useRef()
@@ -26,7 +28,7 @@ function Login(props) {
                     <form className="loginBox" onSubmit={handleClick}>
                         <input placeholder="Email" type="email" className="loginInput" ref = {email} />
                         <input placeholder="Password" type="password" className="loginInput" ref = {password} />
-                        <button className="loginButton">Log In</button>
+                        <button className="loginButton" disabled = {isFetching}>{isFetching? <CircularProgress color="white" size="20px" />: "Log In"}</button>
                         <span className="loginForgot">Forgot Password?</span>
                         <button className="loginRegisterButton">
                             Create a New Account

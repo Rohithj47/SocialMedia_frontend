@@ -1,10 +1,14 @@
-import React, { useEffect,useState } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
 import './feed.css'
 import Share  from '../share/Share';
 import Post from '../post/Post';
 import axios from 'axios'
+import { AuthContext } from '../../context/AuthContext';
+
+
 function Feed({username}) {
     const [posts, setPosts] = useState([])
+    const { user } = useContext(AuthContext)
 
     useEffect(()=>{
         const fetchPosts = async() =>{
