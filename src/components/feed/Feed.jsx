@@ -14,11 +14,11 @@ function Feed({username}) {
         const fetchPosts = async() =>{
             const res = username 
             ? await axios.get('/post/profile/' + username)
-            :await axios.get('post/timeline/62d5562b2a1623e850083958')
+            :await axios.get(`post/timeline/${user._id}` )
             setPosts(res.data)
         }
         fetchPosts()
-    }, [username])
+    }, [username, user._id])
     return (
         <div className='feed'>
             <Share />
