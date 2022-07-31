@@ -3,6 +3,8 @@ import "./login.css";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from '@material-ui/core';
+import { Link } from 'react-router-dom'
+
 
 
 function Login(props) {
@@ -27,9 +29,9 @@ function Login(props) {
                     <form className="loginBox" onSubmit={handleClick}>
                         <input placeholder="Email" type="email" className="loginInput" ref = {email} />
                         <input placeholder="Password" type="password" className="loginInput" ref = {password} />
-                        <button className="loginButton" disabled = {isFetching}>{isFetching? <CircularProgress size="20px" />: "Log In"}</button>
+                        <button type="submit" className="loginButton" disabled = {isFetching}>{isFetching? <CircularProgress size="20px" />: "Log In"}</button>
                         <span className="loginForgot">Forgot Password?</span>
-                        <button className="loginRegisterButton">
+                        <button type="button" className="loginRegisterButton" onClick={() => window.location.href = '/register'}>
                             Create a New Account
                         </button>
                     </form>

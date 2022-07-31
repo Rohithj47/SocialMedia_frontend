@@ -82,3 +82,8 @@
       font-weight: 500;
       cursor: pointer;
   }
+
+  .loginRegisterLink {
+    align-self: center;
+
+  }
