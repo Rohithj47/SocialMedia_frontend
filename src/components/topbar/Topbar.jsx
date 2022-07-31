@@ -4,14 +4,23 @@ import { Search, Chat, Notifications, Person, CodeSharp} from '@material-ui/icon
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext'
+import { useRef } from 'react';
 
 function Topbar(props) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const { user, dispatch } = useContext(AuthContext)
+    const search = useRef()
+    const handleEnter = (e) => {
+        if (e.charCode == 13){
+            console.log(search.current.value)
+            window.location.href = `/profile/${search.current.value}`
+        }
+    }
     
     const handleSignOut = (e) => {
         localStorage.removeItem("user");
         dispatch({ type: "LOGIN_FAILURE"});
+        window.location.href = '/'
     }
     return (
         <div className='topbarContainer'>
@@ -23,7 +32,11 @@ function Topbar(props) {
             <div className="topbarCenter">
                 <div className="searchbar">
                     <Search className="searchIcon"></Search>
-                    <input placeholder='Search for friends, posts, or video' className="searchInput" />
+                    <input
+                      placeholder='Search for people, just hit enter :)'
+                      className="searchInput"
+                      ref={search}
+                      onKeyPress = {handleEnter}  />
                 </div>
             </div>
             <div className="topbarRight">

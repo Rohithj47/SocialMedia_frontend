@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './post.css'
-import { MoreVert } from "@material-ui/icons";
+import { MoreVert, Delete} from "@material-ui/icons";
 import { useState } from 'react';
 import axios from 'axios';
 import { format, render, cancel, register } from 'timeago.js';
@@ -35,6 +35,13 @@ function Post({post}) {
         setIsLiked(!isLiked);
     };
 
+    const deletePost = () => {
+        axios.delete(`/post/${post._id}`,{
+            userId: currentUser._id
+        }).then(() => window.location.reload())
+          .catch((err) => console.log(err))
+    }
+
     return (
         <div className='post'>
             <div className="postWrapper">
@@ -54,7 +61,7 @@ function Post({post}) {
                         <span className="postDate">{format(post.createdAt)}</span>
                     </div>
                     <div className="postTopRight">
-                        <MoreVert /> 
+                        {post.userId === currentUser._id && <Delete className='deleteButton' onClick = {deletePost} />} 
 
                     </div>
 
