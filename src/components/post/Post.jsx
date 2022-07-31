@@ -36,9 +36,7 @@ function Post({post}) {
     };
 
     const deletePost = () => {
-        axios.delete(`/post/${post._id}`,{
-            userId: currentUser._id
-        }).then(() => window.location.reload())
+        axios.delete(`/post/${post._id}`, { data: { userId: currentUser._id } }).then(() => window.location.reload())
           .catch((err) => console.log(err))
     }
 
