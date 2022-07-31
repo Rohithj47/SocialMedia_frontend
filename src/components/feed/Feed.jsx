@@ -23,7 +23,7 @@ function Feed({username}) {
     }, [username, user._id])
     return (
         <div className='feed'>
-            <Share />
+            {username === user.username && <Share />}
             {posts.map((p) => (
                 <Post key= {p._id} post = {p} />
             ))}
