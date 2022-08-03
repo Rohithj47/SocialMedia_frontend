@@ -3,7 +3,7 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios"
 import { Link, useParams } from "react-router-dom";
 
@@ -27,7 +27,6 @@ export default function Profile() {
   const PageNotFound = () => {
     return (
       <div>
-        {console.log("Hi")}
             <h3>404 page not found</h3>
             <p>We are sorry but the page you are looking for does not exist.</p>
             <Link to="/" >Let's go Home</Link>
@@ -62,8 +61,8 @@ export default function Profile() {
             </div>
             <br></br>
             <div className="profileRightBottom">
-              <Feed username={user.username}/>
-              <Rightbar user={user} />
+              <Feed username={user.username} />
+              <Rightbar user={user}/>
             </div>
           </div>
         </div>
@@ -73,7 +72,6 @@ export default function Profile() {
   
   return (
     <div>
-      {console.log(user != null)}
       {(user.username != null) ? <ProfilePage /> : <PageNotFound />}
     </div>
   );
